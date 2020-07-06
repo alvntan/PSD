@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="badgeid" />
+          </Key>
+          <Property Name="badgeid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="badgename" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="badgecreated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Habit">
+          <Key>
+            <PropertyRef Name="habitid" />
+          </Key>
+          <Property Name="habitid" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="habitname" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="days_off" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="current_streak" Type="int" Nullable="false" />
+          <Property Name="longest_streak" Type="int" Nullable="false" />
+          <Property Name="log_count" Type="int" Nullable="false" />
+          <Property Name="logs" Type="datetime" Nullable="false" />
+          <Property Name="user_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="habitcreated_at" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MyDBModelStoreContainer">
+          <EntitySet Name="Badge" EntityType="Self.Badge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Habit" EntityType="Self.Habit" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Badge">
+          <Key>
+            <PropertyRef Name="badgeid" />
+          </Key>
+          <Property Name="badgeid" Type="Guid" Nullable="false" />
+          <Property Name="badgename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user_id" Type="Guid" Nullable="false" />
+          <Property Name="badgecreated_at" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Habit">
+          <Key>
+            <PropertyRef Name="habitid" />
+          </Key>
+          <Property Name="habitid" Type="Guid" Nullable="false" />
+          <Property Name="habitname" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="days_off" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="current_streak" Type="Int32" Nullable="false" />
+          <Property Name="longest_streak" Type="Int32" Nullable="false" />
+          <Property Name="log_count" Type="Int32" Nullable="false" />
+          <Property Name="logs" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="user_id" Type="Guid" Nullable="false" />
+          <Property Name="habitcreated_at" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="MyDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Badges" EntityType="Self.Badge" />
+          <EntitySet Name="Habits" EntityType="Self.Habit" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyDBModelStoreContainer" CdmEntityContainer="MyDBEntities1">
+          <EntitySetMapping Name="Badges">
+            <EntityTypeMapping TypeName="MyDBModel.Badge">
+              <MappingFragment StoreEntitySet="Badge">
+                <ScalarProperty Name="badgeid" ColumnName="badgeid" />
+                <ScalarProperty Name="badgename" ColumnName="badgename" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="badgecreated_at" ColumnName="badgecreated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Habits">
+            <EntityTypeMapping TypeName="MyDBModel.Habit">
+              <MappingFragment StoreEntitySet="Habit">
+                <ScalarProperty Name="habitid" ColumnName="habitid" />
+                <ScalarProperty Name="habitname" ColumnName="habitname" />
+                <ScalarProperty Name="days_off" ColumnName="days_off" />
+                <ScalarProperty Name="current_streak" ColumnName="current_streak" />
+                <ScalarProperty Name="longest_streak" ColumnName="longest_streak" />
+                <ScalarProperty Name="log_count" ColumnName="log_count" />
+                <ScalarProperty Name="logs" ColumnName="logs" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="habitcreated_at" ColumnName="habitcreated_at" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
